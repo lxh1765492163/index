@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="ss">123</div>
+    <div id="aa">5645</div>
+    <script>
+        var ss = document.getElementById('ss'),
+        aa = document.getElementById('aa');
+
+
+       var MouseE = function( obj , type , fn ){
+
+            ev( obj , type , fn );
+
+       };
+
+       var ev = function(  obj , type , fn ){
+
+            obj.addEventListener( type , function(){
+
+                fn();
+
+            } , false);
+
+            obj.addEventListener("mousedown" , function(){
+
+                evstyle.call( this , type );
+
+            } , false);
+
+            obj.addEventListener("touchstar" , function(){
+
+                evstyle.call( this , type );
+
+            } , false);
+
+       };
+
+       function evstyle( type ){
+
+            if( type != "show"){
+                return;
+            }
+            
+            var ev = document.createEvent("MouseEvent");
+            ev.initEvent( type ,false ,false );
+            this.dispatchEvent( ev );
+
+       };
+
+       MouseE( ss , "show" , function(){alert(1)} );
+       MouseE( ss , "show" , function(){alert(2)} );
+
+
+
+
+    </script>
+</body>
+</html>

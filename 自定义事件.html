@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="ss">123</div>
+    <div id="aa">5645</div>
+    <script>
+        var ss = document.getElementById('ss'),
+        aa = document.getElementById('aa');
+
+        addE( aa , "show" , function(){
+            this.abs = true;
+            
+        });
+        addE( aa , "show" , function(){
+
+            if( !this.abs ){
+                alert(2)
+            }else{
+
+            }
+            
+        });
+
+        addE( ss , "show" , function(){
+            alert(3)
+            
+        });
+        
+        addE( ss , "show" , function(){
+            alert(4)
+            
+        });
+
+        addE( aa , "click" , function(){
+            fir( this, "show" )
+            
+        });
+
+        
+        
+
+        function addE( obj , attr , fn ){
+
+            obj.lisen = obj.lisen || {};
+            obj.lisen[ attr ] = obj.lisen[ attr ] || [];
+            obj.lisen[ attr ].push( fn );
+
+            if (obj.addEventListener) {
+
+                obj.addEventListener( attr, fn , false);
+
+            } else if (obj.attachEvent) {
+
+                obj.attachEvent( "on" + attr , fn );
+
+            }
+
+        }
+
+        function fir(obj , type){
+            for(var i=0; i< obj.lisen[ type ].length; i++){
+                obj.lisen[ type ][i]();
+            }
+
+        }
+
+
+    </script>
+</body>
+</html>
